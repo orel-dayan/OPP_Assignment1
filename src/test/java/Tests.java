@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class Tests {
 
+
     public static final Logger logger = LoggerFactory.getLogger(Tests.class);
     // stub method to check external dependencies compatibility
     GroupAdmin groupAdmin = new GroupAdmin();
@@ -23,13 +24,13 @@ public class Tests {
     // stub method to check external dependencies compatibility
     @BeforeEach
     void setUp() {
-            groupAdmin.register(member1);
-            groupAdmin.register(member2);
-        }
-      @AfterEach
-      void testMemory(){
-            logger.info(JvmUtilities::jvmInfo);
-        }
+        groupAdmin.register(member1);
+        groupAdmin.register(member2);
+    }
+    @AfterEach
+    void testMemory(){
+        logger.info(JvmUtilities::jvmInfo);
+    }
     // check register and unregister size
     @Test
     public void testMemoryRegisterChanges(){
@@ -109,7 +110,6 @@ public class Tests {
         logger.info(() -> JvmUtilities.objectTotalSize(m));
     }
 }
-
 
 
 
