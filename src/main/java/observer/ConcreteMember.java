@@ -11,8 +11,7 @@ public class ConcreteMember implements Member {
 
     public ConcreteMember(String name) {
         this.name = name;
-        this.usb=null;
-
+        this.usb = null;
     }
      /**
      * This method updates the UndoableStringBuilder object of the ConcreteMember
@@ -22,12 +21,11 @@ public class ConcreteMember implements Member {
      */
     @Override
     public void update(UndoableStringBuilder usb) {
-        this.usb=usb;
+        this.usb = usb;
         System.out.println(this.name + " value -> " + this.usb);
-
     }
 
-    public UndoableStringBuilder getUsb() {
-        return usb;
+    public String getData() {
+        return usb.toString();
     }
 }

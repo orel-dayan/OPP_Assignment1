@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GroupAdmin extends UndoableStringBuilder implements Sender{
-    private List<Member> members;
+    private final List<Member> members;
 
     /**
      * A constructor with default values.
@@ -23,7 +23,7 @@ public class GroupAdmin extends UndoableStringBuilder implements Sender{
     public GroupAdmin()
     {
         super();
-        members =new ArrayList<>();
+        members = new ArrayList<>();
     }
 
     public void notifyAllMembers() {
@@ -51,11 +51,15 @@ public class GroupAdmin extends UndoableStringBuilder implements Sender{
         }
     }
 
-        @Override
+     @Override
      public void insert(int offset, String obj) {
         super.insert(offset,obj);
         this.notifyAllMembers();
     }
+
+    /**
+     * @param obj the string to append
+     */
 
     @Override
     public void append(String obj) {
@@ -80,7 +84,8 @@ public class GroupAdmin extends UndoableStringBuilder implements Sender{
         return members;
     }
 
-    public UndoableStringBuilder getUsb() {
-        return this;
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }
