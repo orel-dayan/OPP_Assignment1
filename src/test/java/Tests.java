@@ -76,11 +76,11 @@ public class Tests {
         logger.info(() -> JvmUtilities.objectTotalSize(c2));
         assertEquals(JvmUtilities.objectTotalSize(c1), JvmUtilities.objectTotalSize(c2));
         groupAdmin1.undo();
-        assertEquals("Great", c1.getUsb().toString());
+        assertEquals("Great", c1.getData());
         groupAdmin1.unregister(c4);
         groupAdmin1.delete(0, 1);
-        assertEquals("reat", c1.getUsb().toString());
-        assertEquals(c2.getUsb(), c3.getUsb());
+        assertEquals("reat", c1.getData());
+        assertEquals(c2.getData(), c3.getData());
         logger.info(() -> (" Size before unregister is:"));
         logger.info(() -> JvmUtilities.objectTotalSize(groupAdmin1));
         groupAdmin1.unregister(c3);
@@ -96,16 +96,16 @@ public class Tests {
         logger.info(() -> JvmUtilities.objectTotalSize(m));
         groupAdmin2.register(m);
         groupAdmin2.append("to sleep or not to sleep?");
-        assertEquals("to sleep or not to sleep?", m.getUsb().toString());
+        assertEquals("to sleep or not to sleep?",m.getData());
         groupAdmin2.append(" to sleep");
-        assertEquals("to sleep or not to sleep? to sleep", m.getUsb().toString());
+        assertEquals("to sleep or not to sleep? to sleep", m.getData());
         logger.info(() -> JvmUtilities.objectTotalSize(m));
         groupAdmin2.append("!");
         groupAdmin2.unregister(m);
         UndoableStringBuilder usb = new UndoableStringBuilder();
         usb.append("hello");
         m.update(usb);
-        assertEquals("hello", m.getUsb().toString());
+        assertEquals("hello", m.getData());
         logger.info(() -> (" Size after :"));
         logger.info(() -> JvmUtilities.objectTotalSize(m));
     }
