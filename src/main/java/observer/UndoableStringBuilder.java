@@ -12,13 +12,13 @@ Use the class you've implemented in previous assignment
 public class UndoableStringBuilder {
 
         private StringBuilder stringBuilder;
-        private  Stack<String> stackStringHistory=new Stack<>();
+        private  Stack<String> stackStringHistory;
         /**
          * A constructor with default values.
          */
         public UndoableStringBuilder() {
             this.stringBuilder = new StringBuilder();
-
+            this.stackStringHistory=new Stack<>();
         }
 
         /**
@@ -39,10 +39,10 @@ public class UndoableStringBuilder {
          * @return -a reference to this object.
          *
          */
-        public UndoableStringBuilder append(String str) {
+        public void  append(String str) {
             this.stringBuilder.append(str);
             stackStringHistory.push(this.stringBuilder.toString());
-            return this;
+
         }
         /**
          * Removes the characters in a substring of this sequence. The substring begins
@@ -54,16 +54,14 @@ public class UndoableStringBuilder {
          *  @param  end -The ending index.
          *  @return -a reference to this object.
          */
-        public UndoableStringBuilder  delete(int start, int end) {
+        public void delete(int start, int end) {
 
             if ((start < 0) || (end < start) || this.stringBuilder.toString().length() <end) {
                 System.err.println("out of bounds");
-                return this;
             }
-
             this.stringBuilder.delete(start, end);
             stackStringHistory.push(this.stringBuilder.toString());
-            return this;
+
         }
 
         /**
@@ -75,15 +73,16 @@ public class UndoableStringBuilder {
          * @return a reference to this object.
          */
 
-        public UndoableStringBuilder insert(int offset, String str) {
+        public void insert(int offset, String str) {
 
             if (offset < 0 || offset> this.stringBuilder.toString().length()) {
                 System.err.println("out of bounds");
-                return this;
+                //return this
+
             }
             this.stringBuilder.insert(offset, str);
             stackStringHistory.push(this.stringBuilder.toString());
-            return this;
+            //return this
         }
         /**
          *
@@ -98,11 +97,12 @@ public class UndoableStringBuilder {
          * @param str -String that will replace previous contents.
          * @return  a reference to this object.
          */
-        public UndoableStringBuilder replace(int start, int end, String str) {
+        public  UndoableStringBuilder replace(int start, int end, String str) {
             try {
                 if (str == null) {
                     System.err.println("str cant be null");
                     return this;
+
                 }
                 this.stringBuilder.replace(start, end, str);
                 stackStringHistory.push(this.stringBuilder.toString());
@@ -111,6 +111,7 @@ public class UndoableStringBuilder {
 
             }
             return this;
+
         }
         /**
          * Causes this character sequence to be replaced by the reverse of the sequence.
@@ -120,7 +121,8 @@ public class UndoableStringBuilder {
         public UndoableStringBuilder reverse() {
             this.stringBuilder.reverse();
             stackStringHistory.push(this.stringBuilder.toString());
-            return this;
+            return  this;
+
         }
         /**
          * Makes an undo command - reverse the action of an earlier action.

@@ -9,25 +9,11 @@ public class ConcreteMember implements Member {
     private final String name;
     private UndoableStringBuilder usb;
 
-    /**
-     * Constructor
-     * TODO
-     * @param name -
-     */
     public ConcreteMember(String name) {
         this.name = name;
         this.usb=null;
+
     }
-
-    /**
-     * TODO
-     * @return usb
-     */
-    public UndoableStringBuilder getUsb() {
-        return usb;
-    }
-
-
      /**
      * This method updates the UndoableStringBuilder object of the ConcreteMember
      * with the given UndoableStringBuilder object.
@@ -39,5 +25,9 @@ public class ConcreteMember implements Member {
         this.usb=usb;
         System.out.println(this.name + " value -> " + this.usb);
 
+    }
+
+    public UndoableStringBuilder getUsb() {
+        return usb;
     }
 }
