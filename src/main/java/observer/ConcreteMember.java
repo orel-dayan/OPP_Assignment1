@@ -34,6 +34,12 @@ public class ConcreteMember implements Member {
      */
 
     public String getData() {
+        if (usb!=null){
         return usb.toString();
+    }
+        else
+        {
+            return null;
+        }
     }
 }

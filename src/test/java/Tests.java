@@ -109,6 +109,34 @@ public class Tests {
         logger.info(() -> (" Size after :"));
         logger.info(() -> JvmUtilities.objectTotalSize(m));
     }
+    @Test
+    void registerMemory() {
+        ConcreteMember member1 = new ConcreteMember("A");
+        ConcreteMember member2 = new ConcreteMember("B");
+        ConcreteMember member3 = new ConcreteMember("C");
+        ConcreteMember member4 = new ConcreteMember("D");
+        GroupAdmin groupAdmin3 = new GroupAdmin();
+        groupAdmin3.register(member1);
+        groupAdmin3.register(member1);// cant register
+        assertEquals(groupAdmin3.getMembers().size(),1); // size is 1
+        groupAdmin3.register(member2);
+        groupAdmin3.register(member3);
+        groupAdmin3.register(member4);
+        assertEquals(groupAdmin3.getMembers().size(),4); // now 4
+        logger.info(()->"Before actions on UndoableStringBuilder: "+JvmUtilities.objectTotalSize(groupAdmin3));
+        groupAdmin3.append("hi");
+        groupAdmin3.append("hello");
+        groupAdmin3.append("shalom");
+        groupAdmin3.undo();
+        groupAdmin3.undo();
+        assertEquals(member1.getData(),"hi");
+        groupAdmin3.delete(1,2);
+        assertEquals(member2.getData(),"h");
+        groupAdmin3.insert(1,"i");
+        assertEquals(member3.getData(),"hi");
+        logger.info(()->"After actions on UndoableStringBuilder: "+JvmUtilities.objectTotalSize(groupAdmin3));
+    }
+
 }
 
 

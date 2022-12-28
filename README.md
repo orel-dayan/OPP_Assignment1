@@ -1,5 +1,5 @@
 
-## _OOP Course Exercise 1_  
+## _OOP Course Exercise 1_
 _Authors [orel-dayan@]() & [@roy-asraf1](https://github.com/roy-asraf1)_
 
 
@@ -27,7 +27,7 @@ It can undo in the following methods :
 You can find the UndoableStringBuilder class in this [this](https://github.com/orel-dayan/assigment-0) repository.  
 For this assignment, we change the signature of append,delete undo and insert operations.
 
-### Observer Design Pattern 
+### Observer Design Pattern
 The `observer` design pattern is a behavioral design pattern that defines a one-to-many dependency between objects. .
 so that when one object changes state, all its dependents are notified and updated automatically. The pattern has behavioral purpose and applies to the objects.
 
@@ -69,7 +69,8 @@ When the update method is called, the ConcreteMember class updates its  copy of 
 
 To use the GroupAdmin and ConcreteMember classes in a program . first , create a GroupAdmin object and a ConcreteMember object.
 after that register the ConcreteMember with the GroupAdmin by using the register method. then, call the method to modify the shared UndoableStringBuilder object .The ConcreteMember object will be automatically notified of the change and will update its copy of the UndoableStringBuilder object.
-## UML
+
+
 
 
 
