@@ -24,7 +24,8 @@ It can undo in the following methods :
 - insert
 
 
-You can find the UndoableStringBuilder class in this [this](https://github.com/orel-dayan/assigment-0) repository.
+You can find the UndoableStringBuilder class in this [this](https://github.com/orel-dayan/assigment-0) repository.  
+For this assignment, we change the signature of append,delete undo and insert operations.
 
 ### Observer Design Pattern 
 The `observer` design pattern is a behavioral design pattern that defines a one-to-many dependency between objects. .
@@ -50,27 +51,26 @@ Objects use this interface to register as members and to remove themselves from 
 Also `sender` includes a methods to handle the shared object.
 
 ### GroupAdmin class
-The `GroupAdmin` class implements the Sender interface, which defines methods to `register` and `unregister` Member objects, as well as methods to append and insert strings to the `UndoableStringBuilder` object, `delete` strings from the UndoableStringBuilder, and `undo` previous change on the UndoableStringBuilder.  
-The `GroupAdmin` class has a `notifyAllMembers` method that notifies the members that are registered to the GroupAdmin to update their UndoableStringBuilder .
-GroupAdmin contains a list of members and an UndoableStringBuilder that the members points to.  
-We use a list of memebers we want to update on any change within the UndoableStringBuilder of GroupAdmin.
- 
+The `GroupAdmin` class implement the member interface and extends `UndoableStringBuilder` class.
+`GroupAdmin` has methods that oparate  append ,delete,insert and undo methods from the UndoableStringBuilder , by overide them from the UndoableStringBuilder class.
+After each of these called operations, a `notifyAllMembers` method is being called.
+The `notifyAllMembers` method is going through all the members contained in the member's list and for each member it calls the `update` method
+which is being operated in each member in the ConcreteMember class.
+
 
 ### ConcreteMember class
 The `ConcreteMember` class implement the Member interface.
 This class represents a Member of a group administered by a GroupAdmin.
 ConcreteMember can register and get updates from a GroupAdmin.
 ConcreteMember class has a name and own copy of the group's UndoableStringBuilder object.
-When the update method is called, the ConcreteMember class updates its internal copy of the UndoableStringBuilder object with the current state of the shared `UndoableStringBuilder`.
+When the update method is called, the ConcreteMember class updates its  copy of the UndoableStringBuilder object with the current state of the `UndoableStringBuilder` object.
 
 ## Usage
 
-To use the GroupAdmin and ConcreteMember classes in a program . first , build a GroupAdmin object and a ConcreteMember object.
+To use the GroupAdmin and ConcreteMember classes in a program . first , create a GroupAdmin object and a ConcreteMember object.
 after that register the ConcreteMember with the GroupAdmin by using the register method. then, call the method to modify the shared UndoableStringBuilder object .The ConcreteMember object will be automatically notified of the change and will update its copy of the UndoableStringBuilder object.
 ## UML
 
-
-![diagram]()
 
 
 
