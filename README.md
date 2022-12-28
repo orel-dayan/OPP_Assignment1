@@ -70,8 +70,7 @@ after that register the ConcreteMember with the GroupAdmin by using the register
 ## UML
 
 
-![diagram](https://user-images.githubusercontent.com/117816462/209584184-8311d348-2df6-4804-80cc-b9d662eac968.png)
-
+![diagram]()
 
 
 

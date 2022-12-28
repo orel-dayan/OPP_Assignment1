@@ -36,7 +36,7 @@ public class UndoableStringBuilder {
          * Appends the specified string to this character sequence.
          * Supports undo method.
          * @param str the string to append
-         * @return -a reference to this object.
+         * we change signature to void
          *
          */
         public void  append(String str) {
@@ -52,7 +52,7 @@ public class UndoableStringBuilder {
          * Supports undo method.
          *  @param start - The beginning index.
          *  @param  end -The ending index.
-         *  @return -a reference to this object.
+         *  we change signature to void
          */
         public void delete(int start, int end) {
 
@@ -70,7 +70,8 @@ public class UndoableStringBuilder {
          * Supports undo method.
          * @param offset-the offset.
          * @param str - the string to insert.
-         * @return a reference to this object.
+         * we change signature to void
+         *
          */
 
         public void insert(int offset, String str) {
@@ -121,7 +122,7 @@ public class UndoableStringBuilder {
         public UndoableStringBuilder reverse() {
             this.stringBuilder.reverse();
             stackStringHistory.push(this.stringBuilder.toString());
-            return  this;
+            return this;
 
         }
         /**

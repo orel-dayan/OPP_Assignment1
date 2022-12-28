@@ -9,6 +9,10 @@ public class ConcreteMember implements Member {
     private final String name;
     private UndoableStringBuilder usb;
 
+    /**
+     *A constructor with String name of member
+     * @param name - a name of a member
+     */
     public ConcreteMember(String name) {
         this.name = name;
         this.usb = null;
@@ -16,7 +20,6 @@ public class ConcreteMember implements Member {
      /**
      * This method updates the UndoableStringBuilder object of the ConcreteMember
      * with the given UndoableStringBuilder object.
-      * print message
      * @param usb the new UndoableStringBuilder object
      */
     @Override
@@ -24,6 +27,11 @@ public class ConcreteMember implements Member {
         this.usb = usb;
         System.out.println(this.name + " value -> " + this.usb);
     }
+
+    /**
+     * A to string method that returns the current string that's stored.
+     * @return String
+     */
 
     public String getData() {
         return usb.toString();

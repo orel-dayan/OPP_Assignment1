@@ -1,14 +1,15 @@
 /**
- * GroupAdmin class implements the Sender interface.
- * This class contains a list of members and UndoableStringBuilder object.
+ * GroupAdmin class implements the Sender interface and extends UndoableStringBuilder
+ * This class contains a list of members .
  * GroupAdmin class has a methods to register ,unregister members,append and insert strings to UndoableStringBuilder,
  * delete strings from the UndoableStringBuilder and makes an undo command.
  * It also has a notifyAllMembers method that notifies the members that are registered to the GroupAdmin to
- * update their UndoableStringBuilder
+ * update UndoableStringBuilder.
+ * The GroupAdmin  not only sends updates ,but it sends its own update because the object is
+ * UndoableStringBuilder himself
  *
  * @param members is an ArrayList that holds this GroupAdmin members
- * @param usb is an UndoableStringBuilder that the members points to
- */
+ **/
 
 package observer;
 import java.util.ArrayList;
@@ -26,22 +27,31 @@ public class GroupAdmin extends UndoableStringBuilder implements Sender{
         members = new ArrayList<>();
     }
 
+    /**
+     * a function that runs through all members and updates them
+     * */
     public void notifyAllMembers() {
         for (Member m:this.members) {
             m.update(this);
         }
     }
+
+    /**
+     * The function adds a member to the group
+     * @param obj  a member to add (a new member)
+     */
     @Override
     public void register(Member obj) {
-        if (members.contains(obj))
+        if (members.contains(obj)) {
             System.out.println("the member already exist");
-        else
-        {
+         } else {
             members.add(obj);
-
         }
     }
-
+    /**
+     * The function removes a member from the group
+     * @param obj a member to remove
+     */
     @Override
     public void unregister(Member obj) {
         if (members.contains(obj)) {
@@ -51,6 +61,10 @@ public class GroupAdmin extends UndoableStringBuilder implements Sender{
         }
     }
 
+    /**
+     * @see observer.UndoableStringBuilder#insert(int, String)
+     */
+
      @Override
      public void insert(int offset, String obj) {
         super.insert(offset,obj);
@@ -58,14 +72,18 @@ public class GroupAdmin extends UndoableStringBuilder implements Sender{
     }
 
     /**
-     * @param obj the string to append
+     * @see observer.UndoableStringBuilder#append(String)
+     *
      */
-
     @Override
     public void append(String obj) {
        super.append(obj);
        this.notifyAllMembers();
     }
+
+    /**
+     * @see observer.UndoableStringBuilder#delete(int, int)
+     */
 
     @Override
     public void delete(int start, int end) {
@@ -74,16 +92,27 @@ public class GroupAdmin extends UndoableStringBuilder implements Sender{
 
     }
 
+    /**
+     * @see observer.UndoableStringBuilder#undo()
+     */
     @Override
     public void undo() {
        super.undo();
        this.notifyAllMembers();
     }
 
+    /**
+     * A function to get the private members list
+     * @return the members list
+     */
     public List<Member> getMembers() {
         return members;
     }
 
+    /**
+     * A to string method that returns the current string that's stored.
+     * @return String
+     */
     @Override
     public String toString() {
         return super.toString();

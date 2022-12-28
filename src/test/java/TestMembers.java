@@ -59,21 +59,4 @@ public class TestMembers {
         assertEquals(c2.getData(), gad.toString());
     }
 
-
-
-
-
-
-
-
-
-
-
 }
-
-
-
-
-
-
-
