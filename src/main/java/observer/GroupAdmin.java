@@ -1,29 +1,29 @@
 /**
- * GroupAdmin class implements the Sender interface and extends UndoableStringBuilder
+ * GroupAdmin class implements the Sender interface.
  * This class contains a list of members .
  * GroupAdmin class has a methods to register ,unregister members,append and insert strings to UndoableStringBuilder,
  * delete strings from the UndoableStringBuilder and makes an undo command.
  * It also has a notifyAllMembers method that notifies the members that are registered to the GroupAdmin to
  * update UndoableStringBuilder.
- * The GroupAdmin  not only sends updates ,but it sends its own update because the object is
- * UndoableStringBuilder himself
- *
  * @param members is an ArrayList that holds this GroupAdmin members
+ * @param usb is an UndoableStringBuilder that the members points to
  **/
 
 package observer;
 import java.util.ArrayList;
+
 import java.util.List;
 
-public class GroupAdmin extends UndoableStringBuilder implements Sender{
+public class GroupAdmin implements Sender {
     private final List<Member> members;
+    private UndoableStringBuilder usb;
 
     /**
      * A constructor with default values.
      */
     public GroupAdmin()
     {
-        super();
+       this.usb=new UndoableStringBuilder();
         members = new ArrayList<>();
     }
 
@@ -32,7 +32,7 @@ public class GroupAdmin extends UndoableStringBuilder implements Sender{
      * */
     public void notifyAllMembers() {
         for (Member m:this.members) {
-            m.update(this);
+            m.update(this.usb);
         }
     }
 
@@ -63,41 +63,45 @@ public class GroupAdmin extends UndoableStringBuilder implements Sender{
 
     /**
      * @see observer.UndoableStringBuilder#insert(int, String)
+     * Also notifies that a change has been made.
      */
 
      @Override
      public void insert(int offset, String obj) {
-        super.insert(offset,obj);
+        this.usb.insert(offset,obj);
         this.notifyAllMembers();
     }
 
     /**
      * @see observer.UndoableStringBuilder#append(String)
+     * Also notifies that a change has been made.
      *
      */
     @Override
     public void append(String obj) {
-       super.append(obj);
+       this.usb.append(obj);
        this.notifyAllMembers();
     }
 
     /**
      * @see observer.UndoableStringBuilder#delete(int, int)
+     * Also notifies that a change has been made.
      */
 
     @Override
     public void delete(int start, int end) {
-      super.delete(start,end);
+      this.usb.delete(start,end);
       this.notifyAllMembers();
 
     }
 
     /**
      * @see observer.UndoableStringBuilder#undo()
+     * Also notifies that a change has been made.
      */
     @Override
     public void undo() {
-       super.undo();
+       this.usb.undo();
        this.notifyAllMembers();
     }
 
@@ -115,6 +119,6 @@ public class GroupAdmin extends UndoableStringBuilder implements Sender{
      */
     @Override
     public String toString() {
-        return super.toString();
+        return usb.toString();
     }
 }

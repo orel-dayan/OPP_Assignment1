@@ -39,9 +39,10 @@ public class UndoableStringBuilder {
          * we change signature to void
          *
          */
-        public void  append(String str) {
+        public UndoableStringBuilder  append(String str) {
             this.stringBuilder.append(str);
             stackStringHistory.push(this.stringBuilder.toString());
+            return this;
 
         }
         /**
@@ -54,13 +55,15 @@ public class UndoableStringBuilder {
          *  @param  end -The ending index.
          *  we change signature to void
          */
-        public void delete(int start, int end) {
+        public UndoableStringBuilder delete(int start, int end) {
 
             if ((start < 0) || (end < start) || this.stringBuilder.toString().length() <end) {
                 System.err.println("out of bounds");
+                return this;
             }
             this.stringBuilder.delete(start, end);
             stackStringHistory.push(this.stringBuilder.toString());
+            return this;
 
         }
 
@@ -74,16 +77,16 @@ public class UndoableStringBuilder {
          *
          */
 
-        public void insert(int offset, String str) {
+        public UndoableStringBuilder insert(int offset, String str) {
 
             if (offset < 0 || offset> this.stringBuilder.toString().length()) {
-                System.err.println("out of bounds");
-                //return this
+                System.out.println("out of bounds");
+                return this;
 
             }
             this.stringBuilder.insert(offset, str);
             stackStringHistory.push(this.stringBuilder.toString());
-            //return this
+            return this;
         }
         /**
          *
