@@ -11,6 +11,10 @@ _Authors [orel-dayan@]() & [@roy-asraf1](https://github.com/roy-asraf1)_
 * Maven 4.0.0
 * JUnit 5.9.0
 
+### How to use our project
+
+
+
 ## About the project
 
 ### Undoable String Builder
@@ -70,11 +74,28 @@ When the update method is called, the ConcreteMember class updates its  copy of 
 To use the GroupAdmin and ConcreteMember classes in a program . first , create a GroupAdmin object and a ConcreteMember object.
 after that register the ConcreteMember with the GroupAdmin by using the register method. then, call the method to modify the shared UndoableStringBuilder object .The ConcreteMember object will be automatically notified of the change and will update its copy of the UndoableStringBuilder object.
 
+## Part B
+
+package `test` included 3 classes:
+- TestMembers
+- Tests
+- JvmUtilities
+
+In `TestMembers` class  we'd tested the functionality of the update method of the ConcreteMember class and the functionality of GroupAdmin and his abilities and how it can handle different situations including passing an already registered member. 
+
+In addition, we asked to track the size of the object in the heap. 
+We found out that one of the parameters for checking the efficiency of the code is the size of the object in the JVM memory. 
+we saw that in the `JvmUtilities` class there are 3 static methods that we used to test the efficiency.
+
+__The method objectFootprint__ : shows all the references that the object contains the size of each reference.
+
+__The method objectTotalSize__ : show the total size of the object. This method is the most relevant to us in this assignment.
+
+__The jvmInfo method__ : show the process ID of the JVM and the total amount of memory for the benefit of the program.
 
 
 
 
 
-
-
-
+## UML
+TODO
