@@ -26,6 +26,7 @@ public class TestMembers {
             assertEquals(groupAdmin.getMembers().get(i), list.get(i));
         }
     }
+
     @Test
     void unregister() {
         ConcreteMember member1 = new ConcreteMember("A");
@@ -58,6 +59,4 @@ public class TestMembers {
         gad.notifyAllMembers();
         assertEquals(c2.getData(), gad.toString());
     }
-
-
 }

@@ -29,7 +29,6 @@ It can undo in the following methods :
 
 
 You can find the UndoableStringBuilder class in this [this](https://github.com/orel-dayan/assigment-0) repository.  
-For this assignment, we change the signature of append,delete undo and insert operations.
 
 ### Observer Design Pattern
 The `observer` design pattern is a behavioral design pattern that defines a one-to-many dependency between objects. .
@@ -55,7 +54,7 @@ Objects use this interface to register as members and to remove themselves from 
 Also `sender` includes a methods to handle the shared object.
 
 ### GroupAdmin class
-The `GroupAdmin` class implement the member interface and extends `UndoableStringBuilder` class.
+The `GroupAdmin` class implement the member interface.
 `GroupAdmin` has methods that oparate  append ,delete,insert and undo methods from the UndoableStringBuilder , by overide them from the UndoableStringBuilder class.
 After each of these called operations, a `notifyAllMembers` method is being called.
 The `notifyAllMembers` method is going through all the members contained in the member's list and for each member it calls the `update` method

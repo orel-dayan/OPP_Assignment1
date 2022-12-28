@@ -10,7 +10,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class Tests {
 
-
     public static final Logger logger = LoggerFactory.getLogger(Tests.class);
     // stub method to check external dependencies compatibility
     GroupAdmin groupAdmin = new GroupAdmin();
@@ -40,6 +39,53 @@ public class Tests {
         logger.info(() -> JvmUtilities.objectFootprint(groupAdmin));
         groupAdmin.unregister(member2);
         logger.info(() -> JvmUtilities.objectFootprint(groupAdmin));
+    }
+    @Test
+    public void test() {
+        GroupAdmin tester = new GroupAdmin();
+        ConcreteMember m1 = new ConcreteMember("A");
+        ConcreteMember m2 = new ConcreteMember("B");
+        ConcreteMember m3 = new ConcreteMember("C");
+
+        System.out.println("Testing footprint and  total size");
+
+        logger.info(() -> JvmUtilities.objectFootprint(tester, m1, m2, m3));
+        logger.info(() -> JvmUtilities.objectTotalSize(tester, m1, m2, m3));
+        System.out.println();
+        System.out.println("Registering members: ");
+
+        tester.register(m1);  //added member
+        tester.register(m2);  //added member
+        tester.register(m3);  //added member
+
+        logger.info(() -> JvmUtilities.objectFootprint(tester));
+        logger.info(() -> JvmUtilities.objectTotalSize(tester));
+
+        tester.append("1");
+        System.out.println();
+
+        System.out.println("let's see what happen to the memory after we appended the string 123 ");
+        logger.info(() -> JvmUtilities.objectFootprint(tester));
+        logger.info(() -> JvmUtilities.objectTotalSize(tester));
+        System.out.println();
+
+        System.out.println("Now let's unregister a members and see what's happen to the memory aloccate: ");
+        tester.unregister(m2);
+        System.out.println();
+        logger.info(() -> JvmUtilities.objectFootprint(tester));
+        logger.info(() -> JvmUtilities.objectTotalSize(tester));
+        tester.unregister(m3);
+        System.out.println();
+        logger.info(() -> JvmUtilities.memoryStats(tester)); // return the objectfootprint & objectTotalSize together
+
+        System.out.println("Printing info: ");
+        logger.info(() -> JvmUtilities.jvmInfo());
+        System.out.println();
+
+        System.out.println("insert an object and see the memory state: ");
+        tester.insert(1, "avi");
+
+        System.out.println();
     }
     @Test
     public void testMemoryStrings(){
@@ -91,8 +137,7 @@ public class Tests {
     @Test
     public void TestConcreteMember() {
 
-        ConcreteMember m =new ConcreteMember("A");
-        logger.info(() -> (" Size before"));
+        ConcreteMember m = new ConcreteMember("A");
         logger.info(() -> JvmUtilities.objectTotalSize(m));
         groupAdmin2.register(m);
         groupAdmin2.append("to sleep or not to sleep?");
@@ -106,7 +151,6 @@ public class Tests {
         usb.append("hello");
         m.update(usb);
         assertEquals("hello", m.getData());
-        logger.info(() -> (" Size after :"));
         logger.info(() -> JvmUtilities.objectTotalSize(m));
     }
     @Test
