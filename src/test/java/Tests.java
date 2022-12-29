@@ -60,7 +60,7 @@ public class Tests {
 
     }
     @Test
-    void checkSize() {
+    void checkSizeDeleteAndInsert() {
 
         // size of admin
         logger.info(()->JvmUtilities.objectTotalSize(tester));
@@ -78,10 +78,23 @@ public class Tests {
         tester.append("grea");
         System.out.println();
 
-        System.out.println("before insert");
+
+        System.out.println("""
+
+                *************** This Is Before insert  ***************\s
+                """);
+        System.out.println("c1 memory: " + JvmUtilities.objectTotalSize(c1));
+        System.out.println("c2 memory: " + JvmUtilities.objectTotalSize(c2));
+
         // insert a string at index 4
         tester.insert(4, "t");
+        System.out.println("""
+
+                *************** This Is after insert  ***************\s
+                """);
+
         logger.info(()->"total memory after insert:");
+
         logger.info(()->JvmUtilities.objectTotalSize(c1));
         System.out.println();
         logger.info(()->JvmUtilities.objectTotalSize(c2));
@@ -90,41 +103,42 @@ public class Tests {
         System.out.println();
 
 
-        // append a string
-        System.out.println("before append");
-        tester.append(" day");
-        logger.info(()->"total memory after append:");
-        logger.info(()->JvmUtilities.objectTotalSize(c1));
-        System.out.println();
-        logger.info(()->JvmUtilities.objectTotalSize(c2));
-        // check if they both have the same size after append
-        assertEquals(JvmUtilities.objectTotalSize(c1),JvmUtilities.objectTotalSize(c2));
-
-
-        // undo the delete action
-        System.out.println("before undo");
-        tester.undo();
-        System.out.println();
-        assertEquals("great",c1.getData());
-        logger.info(()->"total memory after undo:");
-        logger.info(()->JvmUtilities.objectTotalSize(c1));
-
         // delete a range of characters
-        System.out.println("before delete");
+        System.out.println("""
+
+                *************** This Is Before delete ***************\s
+                """);
+        System.out.println("c1 memory: " + JvmUtilities.objectTotalSize(c1));
+        System.out.println("c2 memory: " + JvmUtilities.objectTotalSize(c2));
+
         tester.delete(0,1);
         System.out.println();
         assertEquals("reat", c1.getData());
         assertEquals(c2.getData(),c2.getData());
+        System.out.println("""
+
+                *************** This Is after delete ***************\s
+                """);
         logger.info(()->"total memory after delete:");
         logger.info(()->JvmUtilities.objectTotalSize(c1));
 
+
         // register a member
         tester.register(c3);
+        System.out.println("""
+
+                *************** This Is after register member  ***************\s
+                """);
         logger.info(()->"total memory after register a member:");
+        System.out.println();
         logger.info(()->JvmUtilities.objectTotalSize(tester));
 
 
         // unregister a member
+        System.out.println("""
+
+                *************** This after unregister member  ***************\s
+                """);
         tester.unregister(c3);
         logger.info(()->"total memory after unregister a member:");
         logger.info(()->JvmUtilities.objectTotalSize(tester));
@@ -180,6 +194,48 @@ public class Tests {
         assertEquals(member3.getData(),"hi");
         logger.info(()->"After actions on UndoableStringBuilder: "+JvmUtilities.objectTotalSize(groupAdmin3));
     }
+    @Test
+    void testMemoryBothGroupAdminAndConcreteMemberAppendAndUndo(){
+
+        GroupAdmin groupAdmin = new GroupAdmin();
+
+        ConcreteMember M1 = new ConcreteMember("A");
+        ConcreteMember M2 = new ConcreteMember("B");
+        groupAdmin.register(M1);
+        groupAdmin.register(M2);
+        System.out.println("""
+
+                *************** This Is Before append  ***************\s
+                """);
+        System.out.println("groupAdmin memory : " + JvmUtilities.objectFootprint(groupAdmin));
+        System.out.println("M1 memory: " + JvmUtilities.objectTotalSize(M1));
+        System.out.println("M2 memory: " + JvmUtilities.objectTotalSize(M2));
+
+
+        groupAdmin.append("hello world");
+        System.out.println("""
+
+                *************** This Is after append  ***************\s
+                """);
+        System.out.println("groupAdmin memory : " + JvmUtilities.objectFootprint(groupAdmin));
+        System.out.println("M1 memory : " + JvmUtilities.objectTotalSize(M1));
+        System.out.println("M2 memory : " + JvmUtilities.objectTotalSize(M2));
+
+
+        groupAdmin.undo();
+        assertEquals("",groupAdmin.toString());
+        System.out.println("""
+
+                *************** This Is after undo  ***************\s
+                """);
+        System.out.println("groupAdmin memory : " + JvmUtilities.objectFootprint(groupAdmin));
+        System.out.println("M1 memory : " + JvmUtilities.objectTotalSize(M1));
+        System.out.println("M2 memory : " + JvmUtilities.objectTotalSize(M2));
+        System.out.println();
+
+
+      System.out.println("Total memory consumption of program: " + JvmUtilities.jvmInfo());
+}
 
 }
 

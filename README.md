@@ -61,10 +61,12 @@ Also `sender` includes a methods to handle the shared object.
 
 ### GroupAdmin class
 The `GroupAdmin` class implement the member interface.
-`GroupAdmin` has methods that oparate  append ,delete,insert and undo methods from the UndoableStringBuilder , by overide them from the UndoableStringBuilder class.
+`GroupAdmin` has methods that oparate  append ,delete,insert and undo methods from the UndoableStringBuilder , by calling them from the UndoableStringBuilder class.
 After each of these called operations, a `notifyAllMembers` method is being called.
-The `notifyAllMembers` method is going through all the members contained in the member's list and for each member it calls the `update` method
-which is being operated in each member in the ConcreteMember class.
+The `notifyAllMembers` method is going through all the members contained in the member's list and for each member it calls the Update method, which is being operated in each member in the ConcreteMember class.
+GroupAdmin contains a list of members and an UndoableStringBuilder that the members points to.  
+We use a list of members we want to update on any change within the UndoableStringBuilder of GroupAdmin.
+
 
 
 ### ConcreteMember class
@@ -104,6 +106,9 @@ __The jvmInfo method__ : show the process ID of the JVM and the total amount of 
 
 
 
+he reason for the decrease is that now each ConcreteMember's UndoableStringBuilder points to the same location (shallow-copy) and so the garbage collector cleans their previous UndoableStringBuilder objects and thus making the ArrayList "members" smaller. Also, a reason for this decrease may be an optimiaztion.
+
+The reason for the increase is that now each ConcreteMember's UndoableStringBuilder points to a new location of UndoableStringBuilder object which is larger (since it is appended and has the previous state).
 
 
 
