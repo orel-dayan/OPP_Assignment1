@@ -75,12 +75,10 @@ public class Tests {
         tester.register(c2); // msg
 
 
-
-        System.out.println("before insert");
-        // append a string
         tester.append("grea");
         System.out.println();
 
+        System.out.println("before insert");
         // insert a string at index 4
         tester.insert(4, "t");
         logger.info(()->"total memory after insert:");
@@ -93,6 +91,7 @@ public class Tests {
 
 
         // append a string
+        System.out.println("before append");
         tester.append(" day");
         logger.info(()->"total memory after append:");
         logger.info(()->JvmUtilities.objectTotalSize(c1));
@@ -103,6 +102,7 @@ public class Tests {
 
 
         // undo the delete action
+        System.out.println("before undo");
         tester.undo();
         System.out.println();
         assertEquals("great",c1.getData());
@@ -110,6 +110,7 @@ public class Tests {
         logger.info(()->JvmUtilities.objectTotalSize(c1));
 
         // delete a range of characters
+        System.out.println("before delete");
         tester.delete(0,1);
         System.out.println();
         assertEquals("reat", c1.getData());
@@ -133,19 +134,23 @@ public class Tests {
     @Test
      void TestConcrete() {
         ConcreteMember m = new ConcreteMember("A");
+        System.out.println("total size concremember before register -");
         logger.info(() -> JvmUtilities.objectTotalSize(m));
         tester.register(m);
         tester.append("to sleep or not to sleep?");
         assertEquals("to sleep or not to sleep?",m.getData());
         tester.append(" to sleep");
         assertEquals("to sleep or not to sleep? to sleep", m.getData());
+        System.out.println("total size after register");
         logger.info(() -> JvmUtilities.objectTotalSize(m));
         tester.append("!");
+        System.out.println("unregister-");
         tester.unregister(m);
         UndoableStringBuilder usb = new UndoableStringBuilder();
         usb.append("hello");
         m.update(usb);
         assertEquals("hello", m.getData());
+        System.out.println("size after unregister-");
         logger.info(() -> JvmUtilities.objectTotalSize(m));
     }
     @Test
