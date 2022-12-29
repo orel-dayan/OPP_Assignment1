@@ -83,6 +83,7 @@ after that register the ConcreteMember with the GroupAdmin by using the register
 
 ## UML
 
+![image](https://user-images.githubusercontent.com/117816462/209931065-8595769d-9583-4091-9853-56949330a881.png)
 
 
 ## Part B
@@ -103,6 +104,11 @@ __The method objectFootprint__ : shows all the references that the object contai
 __The method objectTotalSize__ : show the total size of the object. This method is the most relevant to us in this assignment.
 
 __The jvmInfo method__ : show the process ID of the JVM and the total amount of memory for the benefit of the program.
+![image](https://user-images.githubusercontent.com/117816462/209931835-c5a5b83a-a74b-45c6-9c66-00660a0aa864.png)
+![image](https://user-images.githubusercontent.com/117816462/209931915-1d97af94-0dbc-437c-9f47-186962a62e4e.png)
+
+
+
 
 
 
