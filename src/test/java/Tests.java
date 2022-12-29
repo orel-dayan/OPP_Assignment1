@@ -1,7 +1,6 @@
 import observer.ConcreteMember;
 import observer.GroupAdmin;
 import observer.UndoableStringBuilder;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.logging.Logger;
