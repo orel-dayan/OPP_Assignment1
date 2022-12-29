@@ -103,7 +103,9 @@ __The method objectFootprint__ : shows all the references that the object contai
 
 __The method objectTotalSize__ : show the total size of the object. This method is the most relevant to us in this assignment.
 
-__The jvmInfo method__ : show the process ID of the JVM and the total amount of memory for the benefit of the program.
+__The jvmInfo method__ : show the process ID of the JVM and the total amount of memory for the benefit of the program.  
+ ### we have attached documentation to this part:
+
 ![image](https://user-images.githubusercontent.com/117816462/209931835-c5a5b83a-a74b-45c6-9c66-00660a0aa864.png)
 ![image](https://user-images.githubusercontent.com/117816462/209931915-1d97af94-0dbc-437c-9f47-186962a62e4e.png)
 
@@ -111,10 +113,6 @@ __The jvmInfo method__ : show the process ID of the JVM and the total amount of 
 
 
 
-
-he reason for the decrease is that now each ConcreteMember's UndoableStringBuilder points to the same location (shallow-copy) and so the garbage collector cleans their previous UndoableStringBuilder objects and thus making the ArrayList "members" smaller. Also, a reason for this decrease may be an optimiaztion.
-
-The reason for the increase is that now each ConcreteMember's UndoableStringBuilder points to a new location of UndoableStringBuilder object which is larger (since it is appended and has the previous state).
 
 
 
