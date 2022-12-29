@@ -13,6 +13,12 @@ _Authors [orel-dayan@]() & [@roy-asraf1](https://github.com/roy-asraf1)_
 
 ### How to use our project
 
+Clone the repo
+   ```sh
+   git clone https://github.com/orel-dayan/OPP_Assignmment1.git
+   ```
+
+To run the project, open it in the IntelliJ IDEA editor,then enter to pom.xml file and rebuild it.
 
 
 ## About the project
@@ -73,6 +79,10 @@ When the update method is called, the ConcreteMember class updates its  copy of 
 To use the GroupAdmin and ConcreteMember classes in a program . first , create a GroupAdmin object and a ConcreteMember object.
 after that register the ConcreteMember with the GroupAdmin by using the register method. then, call the method to modify the shared UndoableStringBuilder object .The ConcreteMember object will be automatically notified of the change and will update its copy of the UndoableStringBuilder object.
 
+## UML
+
+
+
 ## Part B
 
 package `test` included 3 classes:
@@ -96,5 +106,4 @@ __The jvmInfo method__ : show the process ID of the JVM and the total amount of 
 
 
 
-## UML
-TODO
+
