@@ -69,6 +69,7 @@ public class Tests {
         ConcreteMember c2 = new ConcreteMember("B");
         ConcreteMember c3 = new ConcreteMember("C");
 
+
         // register the members
         tester.register(c1);
         tester.register(c2);
