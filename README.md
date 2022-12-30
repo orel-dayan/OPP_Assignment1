@@ -105,9 +105,22 @@ __The method objectTotalSize__ : show the total size of the object. This method 
 
 __The jvmInfo method__ : show the process ID of the JVM and the total amount of memory for the benefit of the program.  
  ### we have added documentation to this part:
+ in this test we checked the total size of GroupAdmin and ConcreteMember object before and after append and undo actions:
+ 
+![image](https://user-images.githubusercontent.com/117816462/210057005-95f73363-0fb1-4e06-a9e1-451f60f1d482.png)
 
-![image](https://user-images.githubusercontent.com/117816462/209931835-c5a5b83a-a74b-45c6-9c66-00660a0aa864.png)
-![image](https://user-images.githubusercontent.com/117816462/209931915-1d97af94-0dbc-437c-9f47-186962a62e4e.png)
+
+![image](https://user-images.githubusercontent.com/117816462/210057112-813ff5e5-aa7a-4f87-8b34-d1452dd4dbed.png)
+
+in this test we checked the total size of GroupAdmin and ConcreteMember object before and after insert and delete actions:
+ 
+
+![image](https://user-images.githubusercontent.com/117816462/210057294-65a2ca5d-b7e3-45f6-93bf-73402daca5a2.png)
+
+
+![image](https://user-images.githubusercontent.com/117816462/210057531-d3690b54-e45d-40d9-9b3d-1a2a112d89cd.png)
+
+
 
 
 
