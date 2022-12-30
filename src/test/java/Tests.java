@@ -70,6 +70,7 @@ public class Tests {
         tester.register(c1);
         tester.register(c2);
         tester.register(c2); // msg
+        logger.info(()->JvmUtilities.objectTotalSize(tester)); // after register
 
 
         tester.append("grea");
