@@ -26,7 +26,7 @@ then enter to pom.xml file and rebuild it.
 
 ### UndoableStringBuilder
 
-The UndoableStringBuilder is a StringBuilder that can use the undo method to go back to previous state before last change.   
+The UndoableStringBuilder is a StringBuilder that can use the undo method to go back to his previous state before his last change.
 It can undo in the following methods :
 - append
 - delete
@@ -38,7 +38,7 @@ It can undo in the following methods :
 You can find the UndoableStringBuilder class in this [this](https://github.com/orel-dayan/assigment-0) repository.  
 
 ### Observer Design Pattern
-The `observer` design pattern is a behavioral design pattern that defines a one-to-many dependency between objects. .
+The `observer` design pattern is a behavioral design pattern that defines a one-to-many dependency between objects.
 so that when one object changes state, all its dependents are notified and updated automatically. The pattern has behavioral purpose and applies to the objects.
 
 ### When to use
@@ -83,7 +83,7 @@ After that, register the ConcreteMember with the GroupAdmin by using the registe
 
 ## UML
 
-![image](https://user-images.githubusercontent.com/117816462/209931065-8595769d-9583-4091-9853-56949330a881.png)
+![image](https://user-images.githubusercontent.com/117816462/209984745-6e4919a6-4312-4419-b2ea-08a85f5ec724.png)
 
 
 ## Part B
