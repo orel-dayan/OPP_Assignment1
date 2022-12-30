@@ -1,6 +1,4 @@
-import observer.ConcreteMember;
-import observer.GroupAdmin;
-import observer.UndoableStringBuilder;
+import observer.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.logging.Logger;
@@ -13,10 +11,6 @@ public class Tests {
     // stub method to check external dependencies compatibility
     GroupAdmin tester = new GroupAdmin();
 
-    @BeforeEach
-    void setUp() {
-        this.tester = new GroupAdmin();
-    }
 
     // stub method to check external dependencies compatibility
 
@@ -64,9 +58,12 @@ public class Tests {
         // size of admin
         logger.info(()->JvmUtilities.objectTotalSize(tester));
 
+
         ConcreteMember c1 = new ConcreteMember("A");
         ConcreteMember c2 = new ConcreteMember("B");
         ConcreteMember c3 = new ConcreteMember("C");
+        System.out.println("c1 memory: before register " + JvmUtilities.objectTotalSize(c1));
+        System.out.println("c2 memory: before register " + JvmUtilities.objectTotalSize(c2));
 
 
         // register the members
@@ -130,11 +127,11 @@ public class Tests {
                 *************** This Is after register member  ***************\s
                 """);
         logger.info(()->"total memory after register a member:");
-        System.out.println();
         logger.info(()->JvmUtilities.objectTotalSize(tester));
 
 
         // unregister a member
+        System.out.println();
         System.out.println("""
 
                 *************** This after unregister member  ***************\s
